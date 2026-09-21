@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { ChartColumnBigIcon } from "lucide-react";
+
+const poppins = Poppins({
+  weight: ["900", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Cash App",
@@ -8,8 +17,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning={true} data-lt-installed="true">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html
+      lang="en"
+      className="poppins_2534eb2d-module__wndkwq__variable h-full antialiased"
+      suppressHydrationWarning={true}
+      data-lt-installed="true"
+    >
+      <body className={`${poppins.variable} antialiased`}>
+        <nav className="bg-primary p-4 text-white h-20 flex items-center justify-between">
+          <Link href="/" className="font-bold text-2xl flex gap-1 items-center">
+            <ChartColumnBigIcon className="text-lime-500" /> Cash App
+          </Link>
+          <div>auth button</div>
+        </nav>
+
+        {children}
+      </body>
     </html>
   );
 }
