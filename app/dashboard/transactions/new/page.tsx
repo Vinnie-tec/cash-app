@@ -6,22 +6,26 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getCategories } from "@/data/getCategories";
 import Link from "next/link";
+import NewTransactionForm from "./new-transaction-form";
 
-export default function NewTransactionPage() {
+export default async function NewTransactionPage() {
+  const categories = await getCategories();
+  console.log({ categories });
   return (
-    <div className="max-w-7xl mx-auto py-10">
+    <div className="max-w-screen-xl mx-auto py-10">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink>
+            <BreadcrumbLink asChild>
               <Link href="/dashboard">Dashboard</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink>
+            <BreadcrumbLink asChild>
               <Link href="/dashboard/transactions">Transactions</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -31,9 +35,13 @@ export default function NewTransactionPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
-      <Card className="mt-4 max-w-3xl">
-        
+      <Card className="mt-4 max-w-screen-md">
+        <CardHeader>
+          <CardTitle>New Transaction</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <NewTransactionForm categories={categories} />
+        </CardContent>
       </Card>
     </div>
   );

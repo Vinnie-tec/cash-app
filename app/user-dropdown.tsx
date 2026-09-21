@@ -1,11 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { UserButton } from "@clerk/nextjs";
 import { ChartColumnBigIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function UserDropDown() {
+export default function UserDropdown() {
   const router = useRouter();
   return (
     <UserButton
